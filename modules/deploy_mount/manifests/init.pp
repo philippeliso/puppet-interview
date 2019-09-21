@@ -10,7 +10,7 @@ class deploy_mount {
 
 	mount { 'export-directory':
 	    ensure                  => mounted,
-	    name 					=> '/export'
+	    name 					=> '/export',
 	    device                  => '192.168.199.12:/dados',
 	    target                  => '/etc/fstab',
 	    fstype                  => 'nfs',
