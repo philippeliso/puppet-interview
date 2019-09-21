@@ -11,7 +11,8 @@ class deploy_nfs {
 		#hasstatus  => true,
 		#require    => Class["config"],
 	}
-	file { '/etc/exposts':
+
+	file { '/etc/export':
 		ensure => file,
 		owner    => 'root',
 		group    => 'root',
