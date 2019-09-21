@@ -24,7 +24,7 @@ class deploy_nfs {
 		ensure      => running
 	}
 
-	file { '/etc/export':
+	file { '/etc/exports':
 		ensure => file,
 		owner    => 'root',
 		group    => 'root',
