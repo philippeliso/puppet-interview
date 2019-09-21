@@ -4,18 +4,20 @@ class deploy_mount {
 		ensure => installed
 	}
 
-	file { '/export':
-		ensure => directory
+	file { 'nfs-mount-point':
+		ensure => directory,
+		path   => '/export'
 	}
 
 	mount { 'export-directory':
-	    device  		=> '192.168.199.12:/dados', 
-		path    		=> '/export',
-		fstype  		=> 'nfs',
-		options 		=> 'lookupcache=pos,noatime,_netdev,rw,bg,soft,nfsvers=3,tcp,intr,noacl,nocto,rsize=8192,wsize=8192',
-		dump 			=> '0',
-		pass 			=> '0',
-		require 		=> [ File['/export'], Package['nfs-utils']] 
+	    ensure                  => mounted,
+	    device                  => '192.168.199.12:/dados',
+	    target                  => '/etc/fstab',
+	    fstype                  => 'nfs',
+	    options                 => 'lookupcache=pos,noatime,_netdev,rw,bg,soft,nfsvers=3,tcp,intr,noacl,nocto,rsize=8192,wsize=8192',
+	    dump                    => '0',
+	    pass                    => '0',
+	    require                 => [ Package ['nfs-utils'], File['nfs-mount-point'] ]
 	}
 
 }
