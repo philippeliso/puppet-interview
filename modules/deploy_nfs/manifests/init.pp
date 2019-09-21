@@ -1,5 +1,4 @@
 class deploy_nfs {
-	# resources
 	package { 'nfs-utils':
 		ensure => installed
 	}
@@ -25,7 +24,7 @@ class deploy_nfs {
 	}
 
 	file { '/etc/exports':
-		ensure => present,
+		source   => "puppet:///modules/deploy_nfs/etc/exports",
 		owner    => 'root',
 		group    => 'root',
 		mode     => 0644,
