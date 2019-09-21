@@ -19,7 +19,7 @@ class deploy_users {
         default: {
 
             user {'mark':
-                ensure  => 'mark',
+                ensure  => 'present',
                 shell   => '/bin/bash',
                 uid     => '6201',
                 groups  => ['weel', 'adm', 'systemd-journal'],
