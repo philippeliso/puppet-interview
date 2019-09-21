@@ -1,1 +1,2 @@
+# NFS
 /dados	-rw	*(rw,no_root_squash)
