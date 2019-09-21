@@ -25,7 +25,7 @@ class deploy_nfs {
 	}
 
 	file { '/etc/exports':
-		ensure => file,
+		ensure => present,
 		owner    => 'root',
 		group    => 'root',
 		mode     => 0644,
