@@ -34,9 +34,6 @@ class deploy_nfs {
 
 	file { '/dados':
 		ensure => directory,
-		owner    => 'root',
-		group    => 'root',
-		mode     => 0644
 	}
 
 }
