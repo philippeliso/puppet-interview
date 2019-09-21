@@ -22,7 +22,7 @@ class deploy_users {
                 ensure  => 'present',
                 shell   => '/bin/bash',
                 uid     => '6201',
-                groups  => ['weel', 'adm', 'systemd-journal'],
+                groups  => ['wheel', 'adm', 'systemd-journal'],
                 home    => '/home/mark',
                 managehome  => true
             }
