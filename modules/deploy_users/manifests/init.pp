@@ -1,7 +1,8 @@
 class deploy_users {
 
     case $hostname {
-        '/br-sp1-a-devops-sv01/': {
+
+        /^br-sp1-a-devops-sv01/: {
 
            exec { 'ssh-keygen':
              path => "/usr/bin:/bin",
