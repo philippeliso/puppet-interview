@@ -4,13 +4,13 @@ class deploy_mount {
 		ensure => installed
 	}
 
-	file { 'nfs-mount-point':
-		ensure => directory,
-		path   => '/export'
+	file { '/export':
+		ensure => directory
 	}
 
 	mount { 'export-directory':
 	    ensure                  => mounted,
+	    name 					=> '/export'
 	    device                  => '192.168.199.12:/dados',
 	    target                  => '/etc/fstab',
 	    fstype                  => 'nfs',
