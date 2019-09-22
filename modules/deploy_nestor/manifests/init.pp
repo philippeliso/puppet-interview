@@ -4,23 +4,45 @@ class deploy_nestor {
 		ensure => 'present',
 	}
 
-	# file { '/etc/httpd/conf':
-	# 	ensure => directory,
-	# 	owner => "root",
-	# 	group => "root",
-	# 	recurse => true,
-	# 	mode => '0644',
-	# 	source => "${puppet_common_base}/etc/httpd/conf",
-	# 	require => Package['httpd']
-	# }
+	service { 'httpd':
+		enable      => true,
+		ensure      => running,
+		require		=> Package["httpd"]
+	}
 
-	# file { '/etc/httpd/vhosts.d/010-stash.intranet.conf':
-	# 	ensure => directory,
-	# 	owner => "root",
-	# 	group => "root",
-	# 	recurse => true,
-	# 	mode => '0644',
-	# 	source => "${puppet_common_base}/etc/httpd/vhosts.d/010-stash.intranet.conf",
-	# 	require => Package['httpd']
-	# }
+	file { '/etc/httpd/conf.d/userdir.conf':
+		ensure => absent,
+		require => Package['httpd'],
+		notify  => Service['httpd']
+	}
+
+	file { '/etc/httpd/conf.d/welcome':
+		ensure => absent,
+		require => Package['httpd'],
+		notify  => Service['httpd']
+	}
+
+	file { '/etc/httpd/conf.d/autoindex.conf':
+		ensure => absent,
+		require => Package['httpd'],
+		notify  => Service['httpd']
+	}
+	
+	file { '/etc/httpd/conf/httpd.conf':
+		source   => "puppet:///modules/deploy_nestor/etc/httpd/conf/httpd.conf",
+		owner => "root",
+		group => "root",
+		mode => '0644',
+		require => Package['httpd'],
+		notify  => Service['httpd']
+	}
+
+	file { '/etc/httpd/conf.d/nestor.conf':
+		source   => "puppet:///modules/deploy_nestor/etc/httpd/conf.d/nestor.conf",
+		owner => "root",
+		group => "root",
+		mode => '0644',
+		require => Package['httpd'],
+		notify  => Service['httpd']
+	}
 }
