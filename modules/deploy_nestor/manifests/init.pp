@@ -16,7 +16,7 @@ class deploy_nestor {
 		notify  => Service['httpd']
 	}
 
-	file { '/etc/httpd/conf.d/welcome':
+	file { '/etc/httpd/conf.d/welcome.conf':
 		ensure => absent,
 		require => Package['httpd'],
 		notify  => Service['httpd']
